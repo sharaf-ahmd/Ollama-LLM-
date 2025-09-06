@@ -16,7 +16,7 @@ os.environ['LANGCHAIN_TRACING_V2']="true"
 os.environ['LANGCHAIN_PROJECT']=os.getenv("LANGCHAIN_PROJECT")
 
 
-prompt=ChatPromptTemplate([
+prompt=ChatPromptTemplate.from_messages([
     ("system","you are a helpful assistant. please respond to the question asked"),
     ("user","Question: {question}")
 ])
@@ -36,4 +36,5 @@ chain=prompt |llm | OutputParser
 if input_text:
     with st.spinner("Fetching answer..."):
         response=chain.invoke({"question":input_text})
+
         st.write(response)
